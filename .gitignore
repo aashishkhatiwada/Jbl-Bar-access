@@ -1,0 +1,17 @@
+node_modules/
+.DS_Store
+*.log
+# Android / Gradle
+app/android/.gradle/
+app/android/build/
+app/android/app/build/
+app/android/local.properties
+app/android/.cxx/
+app/android/app/.cxx/
+*.keystore
+!app/android/app/debug.keystore
+# Metro / Jest
+.metro-health-check*
+coverage/
+# Milestone APKs are delivered, not committed
+dist/

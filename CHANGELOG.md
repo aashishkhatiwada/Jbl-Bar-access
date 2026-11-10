@@ -1,0 +1,35 @@
+# Changelog
+
+## 0.6.0 — 2026-11-10 (M0–M6 code complete, not yet tested on a phone)
+
+### M0 Foundations
+- Toolchain: JDK 17 (Homebrew formula), Android SDK 37 / build-tools 37 / NDK 27.1.
+- RN 0.88.1 project, package `com.jblbaraccess.app`, label "JBL Bar Access", cleartext LAN traffic.
+- Theme tokens ported from the web CSS; API client with plan timeouts and error mapping.
+- Settings: host address, Test connection (connected / restarting / wrong network / offline / not the toolkit).
+
+### M1 Live layer
+- SSE stream with reconnect back-off (1/2/5/10 s), polling fallback every 5 s, 30 s silence watchdog,
+  quiet recycling every 10 min, foreground/background lifecycle.
+- Revision ordering, CSRF session change → queue cleared and features refetched. "Synced N s ago".
+
+### M2 Engine
+- Single-flight queue, opposite-tap coalescing, 8-tap cap, never replay on disconnect.
+- Planned volume transactions ("Setting volume 25… (7 of 15)"), cancellable.
+- Segment step planning, capability mapping, busy gate with 800 ms grace, automation/calibration locks.
+
+### M3–M5 UI
+- Header, listening panel (speaker drawing + spoken summary), sources, Bluetooth, volume
+  (slider + steppers + typed entry + hold-to-repeat), playback, feedback.
+- Sound: mode, bass, center, atmos, rear, night, audio format, audio sync (slider + steppers + dialog).
+- Front EQ (graph, presets, five band controls, Apply/Reset, keep-while-standby), bass offset.
+- Room setup, system monitor (CPU/RAM charts with text equivalents), details, manual, help, footer.
+
+### M6 Battery notification
+- Threshold 14 % from static analysis of `bdpprog` (docs/battery-trigger.md).
+- Notifee channel "Soundbar battery", permission handling, test notification, dedupe and re-arm,
+  WorkManager background check, Settings status rows and limits copy.
+
+### Not done
+- No APK has been installed on the phone yet; no TalkBack/Switch Access/200 % device pass (M7).
+- Bar's `bdpprog` hash not yet compared with the analysed firmware.
