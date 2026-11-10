@@ -40,8 +40,8 @@ export function SpeakerView() {
   const bassOpacity = m.showBass ? 0.04 + (m.bass + 1) * 0.025 : 0;
   const batteryColor = state === 'docked' ? colors.orange : colors.batteryText;
   const battery = (b: (typeof m.sides)[number]) => (
-    <View style={inline ? styles.batteryInline : styles.batteryFlow} key={b.side}>
-      <Text style={[styles.batteryText, {color: batteryColor}]}>
+    <View style={inline ? [styles.batteryInline, b.side === 'left' ? styles.batteryLeft : styles.batteryRight] : styles.batteryFlow} key={b.side}>
+      <Text style={[styles.batteryText, {color: batteryColor}]} numberOfLines={1}>
         {b.label + ': ' + (b.value == null ? 'Unavailable' : b.value + '%')}
         {b.value != null && b.level !== 'normal' ? ' · ' + LEVEL_WORD[b.level] : ''}
       </Text>
@@ -80,8 +80,8 @@ export function SpeakerView() {
           <View style={styles.subFeet} />
           {inline ? (
             <>
-              <Text style={styles.subCaption} numberOfLines={2}>{m.subStatus}</Text>
-              {m.knownBass ? <Text style={styles.bassCaption}>BASS <Text style={styles.bassLevel}>{m.bass + 1} / 5</Text></Text> : null}
+              <Text style={styles.subCaption} numberOfLines={1}>{m.subStatus}</Text>
+              {m.knownBass ? <Text style={styles.bassCaption} numberOfLines={1}>BASS <Text style={styles.bassLevel}>{m.bass + 1} / 5</Text></Text> : null}
             </>
           ) : null}
         </View>
@@ -131,7 +131,10 @@ const styles = StyleSheet.create({
   breakDocked: {width: 3, opacity: 0},
   breakUnknown: {opacity: 0.2},
   breakLine: {width: 1, height: 8, backgroundColor: colors.orange, opacity: 0.55},
-  batteryInline: {position: 'absolute', top: 35, alignItems: 'center', gap: 6, width: 120},
+  // Labels hang inward from the outer edge so they never leave the drawing.
+  batteryInline: {position: 'absolute', top: 35, gap: 6},
+  batteryLeft: {left: 0, alignItems: 'flex-start'},
+  batteryRight: {right: 0, alignItems: 'flex-end'},
   batteryFlow: {alignItems: 'flex-start', gap: 6, marginRight: 24, marginTop: 6},
   batteryText: {fontSize: font.caption},
   rearCaption: {position: 'absolute', top: 191, left: '8%', width: '62%', textAlign: 'center', fontSize: font.caption, color: colors.captionReadable},
@@ -141,8 +144,8 @@ const styles = StyleSheet.create({
   subwoofer: {height: 91, borderWidth: 1, borderColor: colors.subEdge, backgroundColor: colors.subBody, borderTopLeftRadius: 6, borderTopRightRadius: 6, borderBottomLeftRadius: 3, borderBottomRightRadius: 3, alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 19},
   subLogo: {color: '#b2b3b9', fontSize: 6, fontWeight: '800', letterSpacing: -0.5},
   subFeet: {height: 5, marginHorizontal: 10, borderLeftWidth: 5, borderRightWidth: 5, borderColor: '#121316'},
-  subCaption: {fontSize: font.caption, color: colors.subCaption, marginTop: 7, textAlign: 'center', width: 140, alignSelf: 'center'},
-  bassCaption: {fontSize: font.caption, letterSpacing: 0.7, color: colors.bassCaption, textAlign: 'center', marginTop: 7},
+  subCaption: {fontSize: font.caption, color: colors.subCaption, marginTop: 7, textAlign: 'right', width: 140, alignSelf: 'flex-end'},
+  bassCaption: {fontSize: font.caption, letterSpacing: 0.7, color: colors.bassCaption, textAlign: 'right', width: 140, alignSelf: 'flex-end', marginTop: 7},
   bassLevel: {color: colors.orange, letterSpacing: 0.5},
   flow: {marginTop: 4, marginBottom: 8, gap: 6},
   flowRow: {flexDirection: 'row', flexWrap: 'wrap'},

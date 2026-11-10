@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.1 — 2026-11-10 (first on-device run)
+
+Installed on Redmi Note 13 (Android 17, API 37) over wireless adb.
+- Works: connects, shows live state, live updates, Android 17 local-network permission granted,
+  Sound panel and Set value dialog render as designed.
+- Fixed: rear battery labels overflowed the speaker drawing; SSE line endings set to `\n`
+  (library warned it could not detect them); notification permission now requested at startup.
+
 ## 0.6.0 — 2026-11-10 (M0–M6 code complete, APK built, not yet tested on a phone)
 
 APK: `dist/jbl-bar-access-0.6.0-m6-debug.apk` (debug-signed, JS bundled, arm64 + armv7).

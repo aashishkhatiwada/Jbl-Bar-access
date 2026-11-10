@@ -1,7 +1,7 @@
 import {useEffect, useRef} from 'react';
 import {useSnapshot} from '../state/ControllerContext';
 import {evaluate, type MonitorState} from './monitor';
-import {loadMonitor, registerNotificationOpen, saveMonitor, showLowBattery} from './notify';
+import {loadMonitor, permissionStatus, registerNotificationOpen, requestPermission, saveMonitor, showLowBattery} from './notify';
 import {configureBackground} from './background';
 
 // Foreground path: evaluates every live state change, so an alert fires as
@@ -16,6 +16,8 @@ export function BatteryWatcher({enabled}: {enabled: boolean}) {
 
   useEffect(() => {
     void configureBackground(enabled).catch(() => {});
+    // Alerts are on by default: ask for the Android 13+ permission once.
+    if (enabled) void permissionStatus().then(async p => (p === 'not-asked' ? requestPermission() : p)).catch(() => {});
   }, [enabled]);
 
   useEffect(() => {

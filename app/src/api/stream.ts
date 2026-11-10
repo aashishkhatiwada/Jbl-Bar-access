@@ -13,7 +13,7 @@ export const sseStream: StreamFactory = (url, handlers) => {
   let recycle: ReturnType<typeof setTimeout> | null = null;
 
   const open = (initial: boolean) => {
-    const next = new EventSource(url, {pollingInterval: 0, timeout: 0, timeoutBeforeConnection: 0});
+    const next = new EventSource(url, {pollingInterval: 0, timeout: 0, timeoutBeforeConnection: 0, lineEndingCharacter: '\n'});
     next.addEventListener('open', () => {
       if (closed || next !== source) return;
       if (initial) handlers.onOpen();
