@@ -7,6 +7,7 @@ Installed on 2026-11-10 (plan §9.1). Deviations from the plan are marked.
 | JDK 17 | `brew install openjdk@17` → 17.0.21 | **Deviation:** formula instead of the `temurin@17` cask — no macOS password prompt. |
 | SDK tools | `brew install --cask android-commandlinetools` | |
 | SDK root | `~/Library/Android/sdk` | |
+| NDK / CMake | NDK r27b (27.1.12297006), CMake 3.22.1 | **Deviation:** sdkmanager downloaded at ~0.1 MB/s, so both zips were fetched with curl from dl.google.com, SHA-1 checked against `repository2-3.xml`, and unpacked into the SDK. |
 | Packages | `platform-tools`, `platforms;android-37.0`, `build-tools;37.0.0`, `ndk;27.1.12297006`, `cmake;3.22.1` | RN 0.88 needs API 37 / build-tools 37 / NDK 27.1, not the 35 in the plan. |
 | Node | v25.9.0 | RN CLI and Jest work on it; no pin needed so far. |
 | React Native | 0.88.1, new architecture | **Deviation:** legacy architecture was removed in RN 0.82, so `newArchEnabled=false` is not possible. All libraries build and load through the new architecture / interop layer. |

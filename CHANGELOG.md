@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.6.0 — 2026-11-10 (M0–M6 code complete, not yet tested on a phone)
+## 0.6.0 — 2026-11-10 (M0–M6 code complete, APK built, not yet tested on a phone)
+
+APK: `dist/jbl-bar-access-0.6.0-m6-debug.apk` (debug-signed, JS bundled, arm64 + armv7).
 
 ### M0 Foundations
 - Toolchain: JDK 17 (Homebrew formula), Android SDK 37 / build-tools 37 / NDK 27.1.
@@ -31,5 +33,5 @@
   WorkManager background check, Settings status rows and limits copy.
 
 ### Not done
-- No APK has been installed on the phone yet; no TalkBack/Switch Access/200 % device pass (M7).
+- APK built but not yet installed on the phone; no TalkBack/Switch Access/200 % device pass (M7).
 - Bar's `bdpprog` hash not yet compared with the analysed firmware.
