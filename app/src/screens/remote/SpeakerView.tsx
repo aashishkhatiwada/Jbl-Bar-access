@@ -115,7 +115,7 @@ const ringInsets = [
 const speakerBase = {height: 22, borderWidth: 1, borderColor: colors.speakerEdge, backgroundColor: colors.speakerBody, borderTopColor: colors.speakerTop};
 
 const styles = StyleSheet.create({
-  viz: {height: 223, marginTop: 14, position: 'relative', overflow: 'hidden'},
+  viz: {height: 245, marginTop: 14, position: 'relative', overflow: 'hidden'},
   inactive: {opacity: 0.85},
   assembly: {position: 'absolute', left: 0, top: 130, width: '77%', height: 43, flexDirection: 'row', alignItems: 'flex-start'},
   rear: {width: '14%', position: 'relative', alignItems: 'center'},
@@ -132,12 +132,12 @@ const styles = StyleSheet.create({
   breakUnknown: {opacity: 0.2},
   breakLine: {width: 1, height: 8, backgroundColor: colors.orange, opacity: 0.55},
   // Labels hang inward from the outer edge so they never leave the drawing.
-  batteryInline: {position: 'absolute', top: 35, gap: 6, width: 150},
+  batteryInline: {position: 'absolute', top: 52, gap: 6, width: 150},
   batteryLeft: {left: 0, alignItems: 'flex-start'},
   batteryRight: {right: 0, alignItems: 'flex-end'},
   batteryFlow: {alignItems: 'flex-start', gap: 6, marginRight: 24, marginTop: 6},
   batteryText: {fontSize: font.caption},
-  rearCaption: {position: 'absolute', top: 191, left: '8%', width: '62%', textAlign: 'center', fontSize: font.caption, color: colors.captionReadable},
+  rearCaption: {position: 'absolute', top: 214, left: '8%', width: '62%', textAlign: 'center', fontSize: font.caption, color: colors.captionReadable},
   sub: {position: 'absolute', top: 29, right: '4%', width: '18%', alignItems: 'stretch'},
   rings: {position: 'absolute', top: '70%', bottom: '-10%', left: '-12%', right: '-12%'},
   ring: {position: 'absolute', borderWidth: 1, borderColor: '#ee9b7c', borderRadius: 999},

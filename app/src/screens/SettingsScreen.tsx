@@ -78,7 +78,7 @@ export function SettingsScreen({settings, onSave, onClose}: {settings: Settings;
           </View>
         ) : null}
         {result ? (
-          <View style={[styles.result, styles.resultBox]} accessible accessibilityLiveRegion="polite" testID="host-result">
+          <View style={styles.resultBox} accessible accessibilityLiveRegion="polite" testID="host-result">
             <Text style={[styles.body, {color: result.kind === 'connected' ? colors.green : colors.danger}]}>
               {(result.kind === 'connected' ? '✓ ' : '✕ ') + RESULT_TITLE[result.kind]}
             </Text>
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   primary: {borderColor: colors.accentBorder, backgroundColor: colors.applyBg},
   primaryText: {color: colors.applyText},
   result: {flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 14, flexWrap: 'wrap'},
-  resultBox: {flexDirection: 'column', alignItems: 'flex-start', gap: 2, padding: 12, borderRadius: radius.button, borderWidth: 1, borderColor: colors.line},
+  resultBox: {marginTop: 14, gap: 4, padding: 12, borderRadius: radius.button, borderWidth: 1, borderColor: colors.line},
   link: {alignSelf: 'flex-start', borderWidth: 0, backgroundColor: 'transparent', paddingHorizontal: 0, marginTop: 6},
   linkText: {color: colors.orange, fontSize: font.small, textDecorationLine: 'underline'},
 });

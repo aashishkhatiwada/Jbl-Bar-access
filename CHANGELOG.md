@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.2 — 2026-11-11 (second on-device pass)
+
+Checked on the phone (Redmi Note 13, Android 17, screen reader TalkMan/Jieshuo):
+- Footer shows "Live updates"; system monitor fills with live samples.
+- Settings → Test connection: "Connected · JBL Bar 9.1 answered. Power: On."
+- Battery alerts panel: permission Allowed, live battery and dock state, last check.
+- Fixed: battery labels truncated, then sharing a line with the bass caption; light
+  system navigation bar over the dark page; Test connection result laid out side by side.
+- Selected source now says "selected" in its spoken label; every button has an explicit label.
+- New whole-screen accessibility audit test.
+
 ## 0.6.1 — 2026-11-10 (first on-device run)
 
 Installed on Redmi Note 13 (Android 17, API 37) over wireless adb.
