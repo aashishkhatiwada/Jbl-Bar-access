@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   breakUnknown: {opacity: 0.2},
   breakLine: {width: 1, height: 8, backgroundColor: colors.orange, opacity: 0.55},
   // Labels hang inward from the outer edge so they never leave the drawing.
-  batteryInline: {position: 'absolute', top: 35, gap: 6},
+  batteryInline: {position: 'absolute', top: 35, gap: 6, width: 150},
   batteryLeft: {left: 0, alignItems: 'flex-start'},
   batteryRight: {right: 0, alignItems: 'flex-end'},
   batteryFlow: {alignItems: 'flex-start', gap: 6, marginRight: 24, marginTop: 6},

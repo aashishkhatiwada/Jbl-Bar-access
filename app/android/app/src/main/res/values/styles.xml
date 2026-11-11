@@ -1,8 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- The app is always dark, like the web remote. -->
+        <item name="android:windowBackground">@color/app_bg</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
     </style>
 

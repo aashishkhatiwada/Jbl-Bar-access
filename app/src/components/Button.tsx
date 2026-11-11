@@ -25,11 +25,12 @@ export interface AppButtonProps {
 // Web `button`: 1px translucent border, 9px radius, disabled at 38 % opacity.
 // Every button is at least 44 dp tall and wide (the web's 40 px is raised).
 export const AppButton = React.forwardRef<React.ElementRef<typeof Pressable>, AppButtonProps>(function AppButtonImpl(props, ref) {
-  const {label, children, disabled, style, pressedStyle, textStyle, accessibilityState, accessibilityRole = 'button', ...rest} = props;
+  const {label, children, disabled, style, pressedStyle, textStyle, accessibilityState, accessibilityRole = 'button', accessibilityLabel, ...rest} = props;
   return (
     <Pressable
       ref={ref}
       {...rest}
+      accessibilityLabel={accessibilityLabel ?? label}
       disabled={disabled}
       accessibilityRole={accessibilityRole}
       accessibilityState={{...accessibilityState, disabled: !!disabled}}

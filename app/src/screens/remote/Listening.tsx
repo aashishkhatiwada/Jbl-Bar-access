@@ -49,7 +49,7 @@ function Inputs() {
           return (
             <AppButton
               key={item.action}
-              accessibilityLabel={item.title + ', ' + item.subtitle}
+              accessibilityLabel={item.title + ', ' + item.subtitle + (selected ? ', selected' : '')}
               accessibilityHint={selected ? 'Current source' : 'Switch to this source'}
               accessibilityState={{selected, busy: snap.active === item.action}}
               disabled={disabled(snap, item.action)}
