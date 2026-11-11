@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Battery threshold (14 %) confirmed by analysing the bar's own `bdpprog` (build 310669); the rule is
+  unchanged from 21.23.11.80. Docs updated; no behaviour change.
+
 ## 0.6.2 — 2026-11-11 (second on-device pass) · experimental pre-release
 
 Published as a public debug build on branch `release/0.6.2-experimental`, tag

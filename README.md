@@ -148,5 +148,5 @@ The debug APK includes the JavaScript bundle, so it runs without a Metro dev ser
 - The API has no "set volume to N", so large volume changes take a few seconds.
 - The audio format is only reported for TV / ARC and HDMI.
 - Battery levels are the bar's last reported values and can lag while the speakers sleep.
-- The battery threshold was read from firmware 21.23.11.80. It hasn't been confirmed that the bar's
-  build 310669 uses the same program ([how to check](docs/battery-trigger.md#open-item)).
+- The 14 % battery threshold was read from the bar's own firmware (build 310669,
+  [details](docs/battery-trigger.md)). It hasn't yet been watched happen on a draining speaker.

@@ -43,8 +43,8 @@ On a Redmi Note 13 (Android 17) against a JBL Bar 9.1 running `jbl-bar-toolkit`:
   against a simulated bar only.
 - Reconnecting after the phone loses Wi-Fi (unit-tested only).
 - A hands-on screen-reader pass (TalkBack / TalkMan), Switch Access, and 200 % text.
-- A low-battery notification from a real draining speaker. The 14 % threshold comes from the
-  firmware and is not yet confirmed for build 310669 (`docs/battery-trigger.md`).
+- A low-battery notification from a real draining speaker. The 14 % threshold was read from the
+  bar's own firmware build 310669 (`docs/battery-trigger.md`), but no speaker has been drained to it.
 
 ## Install
 

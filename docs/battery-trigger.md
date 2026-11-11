@@ -6,9 +6,9 @@ Defined in `app/src/notifications/thresholds.ts`.
 | | |
 |---|---|
 | Method | Static analysis (plan §8.2, method 1). No drain test run. |
-| Date | 2026-11-10 |
+| Date | 2026-11-10; confirmed on the bar's own build 2026-11-11 |
 | Binary | `rootfs/usr/local/bin/bdpprog` from `Firmware_update-JBL_Bar_9.1_TWS_Version_21.23.11.80` (md5 `91e5ccbf741f1693d4d273e8fd78ee36`) |
-| Target bar | firmware build `310669`: its `bdpprog` is **different** (md5 `35fc2269ef2a14b3207a3e3b82eea91c`, checked 2026-11-11), so the value is unconfirmed for this bar |
+| Bar's own binary | firmware build `310669`, `bdpprog` md5 `35fc2269ef2a14b3207a3e3b82eea91c` (copied from the bar). A different build, **same rule** (see below) |
 
 ## What the firmware does
 
@@ -46,18 +46,22 @@ undocked: **≤ 14 %**, and **0 is never low** (it underflows to 255). The app m
 - Suppressed when docked, when battery/dock state is unknown, when unreachable, and in standby
   (cached telemetry). Covered by `app/__tests__/battery.test.ts`.
 
-## Open item
+## Confirmed on the bar's build (2026-11-11)
 
-On 2026-11-11 the bar reported `md5sum /usr/local/bin/bdpprog` = `35fc2269ef2a14b3207a3e3b82eea91c`,
-which differs from the analysed image (`91e5ccbf741f1693d4d273e8fd78ee36`). The bar runs a newer build
-(release notes for 23.06.41.80 are in `firmware/`). Until the bar's own binary is analysed, 14 % is a
-best estimate from the older firmware.
+The bar's `bdpprog` differs from the analysed image, so it was copied off the bar with
+`scp -P 2222 root@192.168.100.25:/usr/local/bin/bdpprog .` and analysed the same way. The code has
+moved by about 0x180 bytes; the logic is identical:
 
-To finish: copy the bar's binary and repeat the analysis above (find the `REAR SPKR LOW BATT` path and
-its `cmp` constant):
+| | 21.23.11.80 | 310669 (the bar) |
+|---|---|---|
+| `REAR SPKR LOW BATT` string | `0xabc721` | `0xabc8d1` |
+| Display-message literal pool | `0x6238f4`–`0x623900` | `0x62396c`–`0x623974` |
+| "battery is low" references | `0x7e2b48`…`0x7e31d0` | `0x7e2cc8`…`0x7e3350` |
+| Low test on every path | `sub #1` / `sub #101` → `cmp #13` | `sub #1` / `sub #101` → `cmp #13` |
+| Display messages posted | 112, 113 | 112, 113 |
 
-```
-ssh -p 2222 root@192.168.100.25 cat /usr/local/bin/bdpprog > bdpprog-310669
-```
+The only other nearby comparison in the new build (`cmp r3, #3` at `0x7e2d54`) is a 4-way jump table
+on a state field in a worker thread, not a battery check.
 
-Fallback: the observation method (§8.2 method 2).
+**Conclusion:** on this bar the native message appears at **1–14 %**, so `REAR_LOW_BATTERY_PERCENT = 14`
+stands. Not yet observed from a real draining speaker (§8.2 method 2 would confirm the end-to-end behaviour).
