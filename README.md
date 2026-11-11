@@ -1,5 +1,8 @@
 # JBL Bar Access
 
+> ⚠️ **Experimental pre-release (0.6.2, public debug build).** See
+> [releases/RELEASE_NOTES.md](releases/RELEASE_NOTES.md) for what is and isn't tested.
+
 An accessible Android remote for the **JBL Bar 9.1** soundbar.
 
 It talks to the local control API that [`jbl-bar-toolkit`](https://github.com/kisinga/jbl-bar-toolkit)
@@ -55,10 +58,14 @@ Details and the on-phone test script: [docs/accessibility-checklist.md](docs/acc
 You need the JBL toolkit installed on the bar, and the phone on the same Wi-Fi network as the bar
 (`192.168.100.x`). The toolkit refuses other networks.
 
-1. Copy `dist/jbl-bar-access-0.6.2-debug.apk` to the phone and open it, or install it from a Mac:
+1. Download [`releases/jbl-bar-access-0.6.2-experimental-debug.apk`](releases/jbl-bar-access-0.6.2-experimental-debug.apk)
+   (check it against [`releases/SHA256SUMS`](releases/SHA256SUMS)), copy it to the phone and open
+   it, or install it from a Mac:
    ```sh
-   adb install -r dist/jbl-bar-access-0.6.2-debug.apk
+   adb install -r releases/jbl-bar-access-0.6.2-experimental-debug.apk
    ```
+   It is signed with React Native's public debug key, so a future release-signed build will need
+   this one uninstalled first.
 2. Open **JBL Bar Access**. Allow **Nearby devices** (Android 17 asks for this before an app can
    reach the local network) and **Notifications** (for battery alerts).
 3. The address defaults to `192.168.100.25`. To change it, open **Settings** (the gear), enter the
@@ -108,7 +115,8 @@ app/                 React Native 0.88 app (TypeScript, Android only)
   __tests__/         engine, views, components, battery, accessibility audit, API vs mock-bar
 mock-bar/            fake toolkit API with scenarios (standby, low battery, slow, restarting…)
 docs/                toolchain, API notes, accessibility checklist, battery threshold
-dist/                built APKs (not committed)
+dist/                local build output (not committed)
+releases/            published pre-release APK, checksum and notes (release branches only)
 ```
 
 ```sh

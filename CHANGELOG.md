@@ -1,6 +1,9 @@
 # Changelog
 
-## 0.6.2 — 2026-11-11 (second on-device pass)
+## 0.6.2 — 2026-11-11 (second on-device pass) · experimental pre-release
+
+Published as a public debug build on branch `release/0.6.2-experimental`, tag
+`v0.6.2-experimental` (`releases/`, version code 602).
 
 Checked on the phone (Redmi Note 13, Android 17, screen reader TalkMan/Jieshuo):
 - Footer shows "Live updates"; system monitor fills with live samples.
