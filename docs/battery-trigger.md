@@ -8,7 +8,7 @@ Defined in `app/src/notifications/thresholds.ts`.
 | Method | Static analysis (plan §8.2, method 1). No drain test run. |
 | Date | 2026-11-10 |
 | Binary | `rootfs/usr/local/bin/bdpprog` from `Firmware_update-JBL_Bar_9.1_TWS_Version_21.23.11.80` (md5 `91e5ccbf741f1693d4d273e8fd78ee36`) |
-| Target bar | firmware build `310669` — **not yet confirmed to contain the same `bdpprog`** (see "Open item") |
+| Target bar | firmware build `310669`: its `bdpprog` is **different** (md5 `35fc2269ef2a14b3207a3e3b82eea91c`, checked 2026-11-11), so the value is unconfirmed for this bar |
 
 ## What the firmware does
 
@@ -48,13 +48,16 @@ undocked: **≤ 14 %**, and **0 is never low** (it underflows to 255). The app m
 
 ## Open item
 
-The plan names firmware build `310669`; the analysed image is release `21.23.11.80`. A read-only
-`md5sum /usr/local/bin/bdpprog` over the toolkit's SSH (port 2222) would confirm they match, but SSH
-host-key verification failed from this machine, so it was not run. To confirm:
+On 2026-11-11 the bar reported `md5sum /usr/local/bin/bdpprog` = `35fc2269ef2a14b3207a3e3b82eea91c`,
+which differs from the analysed image (`91e5ccbf741f1693d4d273e8fd78ee36`). The bar runs a newer build
+(release notes for 23.06.41.80 are in `firmware/`). Until the bar's own binary is analysed, 14 % is a
+best estimate from the older firmware.
+
+To finish: copy the bar's binary and repeat the analysis above (find the `REAR SPKR LOW BATT` path and
+its `cmp` constant):
 
 ```
-ssh -p 2222 root@192.168.100.25 md5sum /usr/local/bin/bdpprog
+ssh -p 2222 root@192.168.100.25 cat /usr/local/bin/bdpprog > bdpprog-310669
 ```
 
-If the hash differs, repeat the analysis on the bar's binary or fall back to the observation method
-(§8.2 method 2) and update the constant.
+Fallback: the observation method (§8.2 method 2).
